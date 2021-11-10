@@ -10,6 +10,7 @@ source:
 
 build:
   number: 0
+  skip: True  # [py<36]
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -20,23 +21,26 @@ requirements:
     - wheel
     - setuptools
   run:
-    - python
+    - python >=3.6
 
 test:
   imports:
     - prometheus_client
     - prometheus_client.bridge
+    - prometheus_client.openmetrics
+    - prometheus_client.twisted
   commands:
     - pip check
   requires:
     - pip
+    - python <3.10
 
 about:
   home: https://github.com/prometheus/client_python
   license: Apache-2.0
-  summary: Python client for the Prometheus monitoring system
   license_family: Apache
   license_file: LICENSE
+  summary: Python client for the Prometheus monitoring system
   dev_url: https://github.com/prometheus/client_python
   doc_url: https://github.com/prometheus/client_python#readme
 
