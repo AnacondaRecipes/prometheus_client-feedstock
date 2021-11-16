@@ -41,7 +41,7 @@ about:
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
-  summary: Python client for the Prometheus monitoring system
+  summary: Python client for the Prometheus monitoring system 
   dev_url: https://github.com/prometheus/client_python
   doc_url: https://github.com/prometheus/client_python#readme
 
