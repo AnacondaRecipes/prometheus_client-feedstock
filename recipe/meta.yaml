@@ -1,7 +1,8 @@
+{% set name = "prometheus_client" %}
 {% set version = "0.13.1" %}
 
 package:
-  name: prometheus_client
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
