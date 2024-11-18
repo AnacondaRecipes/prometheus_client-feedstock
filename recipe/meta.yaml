@@ -1,18 +1,18 @@
 {% set name = "prometheus_client" %}
-{% set version = "0.14.1" %}
+{% set version = "0.21.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/prometheus/client_python/archive/v{{ version }}.tar.gz
-  sha256: db2b212c690fb1dbd0da807753af9247da28610c1d93fa12fa0b43bd30d22964
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/prometheus_client-{{ version }}.tar.gz
+  sha256: 96c83c606b71ff2b0a433c98889d275f51ffec6c5e267de37c7a2b5c9aa9233e
 
 build:
   number: 0
-  skip: True  # [py<36]
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: True  # [py<38]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
