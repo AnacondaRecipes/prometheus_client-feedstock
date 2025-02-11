@@ -46,6 +46,11 @@ about:
   doc_url: https://github.com/prometheus/client_python#readme
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/49522
+    reason: Dependency for vllm
+  recipe-maintainers:
+    - ianaobi
   recipe-maintainers:
     - jessicaaustin
     - kwilcox
