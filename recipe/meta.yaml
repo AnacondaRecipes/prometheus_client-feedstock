@@ -16,12 +16,12 @@ build:
 
 requirements:
   host:
-    - python >3.8
+    - python
     - pip
     - wheel
     - setuptools
   run:
-    - python >3.8
+    - python
 
 test:
   imports:
@@ -33,7 +33,7 @@ test:
     - pip check
   requires:
     - pip
-    - python >3.8
+    - python
     - twisted
 
 about:
