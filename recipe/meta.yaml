@@ -1,5 +1,5 @@
 {% set name = "prometheus_client" %}
-{% set version = "0.21.1" %}
+{% set version = "0.24.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,29 +7,21 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 252505a722ac04b0456be05c05f75f45d760c2911ffc45f2a06bcaed9f3ae3fb
+  sha256: 7e0ced7fbbd40f7b84962d5d2ab6f17ef88a72504dcf7c0b40737b43b2a461f9
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  skip: True  # [py<39]
 
 requirements:
   host:
     - python
     - pip
     - wheel
-    - setuptools
+    - setuptools >=77.0.0
   run:
     - python
-
-{% set ignore_tests = "" %}
-# >   os.unlink(fullname)
-# E   PermissionError: [WinError 32] The process cannot access the file because it is being used by another process
-{% set ignore_tests = " --ignore=tests/test_multiprocess.py" %}  # [win]
-# E   TypeError: expected str, bytes or os.PathLike object, not NoneType
-{% set ignore_tests = ignore_tests + " --ignore=tests/test_twisted.py" %}  # [win]
-{% set ignore_tests = ignore_tests + " --ignore=tests/test_wsgi.py" %}  # [win]
 
 test:
   source_files:
@@ -41,11 +33,13 @@ test:
     - prometheus_client.twisted
   commands:
     - pip check
-    - pytest -v {{ ignore_tests }} tests
+    - pytest -v  tests
   requires:
     - pip
     - pytest
     - twisted
+    - asgiref
+    - pytest-benchmark
 
 about:
   home: https://github.com/prometheus/client_python
