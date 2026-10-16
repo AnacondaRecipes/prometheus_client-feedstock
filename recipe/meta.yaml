@@ -1,24 +1,23 @@
 {% set name = "prometheus_client" %}
-{% set version = "0.24.1" %}
+{% set version = "0.26.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7e0ced7fbbd40f7b84962d5d2ab6f17ef88a72504dcf7c0b40737b43b2a461f9
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 04a91bcf94e2cf74a44a1a874d651a2e853ed354b6e822f3b7487751465d5c2b
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<39]
+  skip: true  # [py<39]
 
 requirements:
   host:
     - python
     - pip
-    - wheel
     - setuptools >=77.0.0
   run:
     - python
@@ -33,8 +32,8 @@ test:
     - prometheus_client.twisted
   commands:
     - pip check
-    - pytest tests -v --ignore=tests/test_multiprocess.py   # [win]
-    - pytest tests -v                                       # [not win]
+    - pytest tests -v --ignore=tests/test_multiprocess.py  # [win]
+    - pytest tests -v  # [not win]
   requires:
     - pip
     - pytest
