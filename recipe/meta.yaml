@@ -2,7 +2,7 @@
 {% set version = "0.26.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -32,8 +32,8 @@ test:
     - prometheus_client.twisted
   commands:
     - pip check
-    - pytest tests -v --ignore=tests/test_multiprocess.py  # [win]
-    - pytest tests -v  # [not win]
+    - pytest tests -vv --ignore=tests/test_multiprocess.py  # [win]
+    - pytest tests -vv  # [not win]
   requires:
     - pip
     - pytest
@@ -46,7 +46,9 @@ about:
   summary: Python client for the Prometheus monitoring system.
   license: Apache-2.0
   license_family: Apache
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - NOTICE
   dev_url: https://github.com/prometheus/client_python
   doc_url: https://github.com/prometheus/client_python#readme
   description: The official Python client for Prometheus.
