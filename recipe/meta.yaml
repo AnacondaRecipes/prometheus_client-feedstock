@@ -44,8 +44,8 @@ test:
 about:
   home: https://github.com/prometheus/client_python
   summary: Python client for the Prometheus monitoring system.
-  license: Apache-2.0
-  license_family: Apache
+  license: Apache-2.0 AND BSD-2-Clause
+  license_family: Other
   license_file:
     - LICENSE
     - NOTICE
